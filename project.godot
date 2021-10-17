@@ -36,6 +36,10 @@ config/name="GameW"
 run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/fullscreen=true
+
 [importer_defaults]
 
 texture={
