@@ -70,7 +70,7 @@ format = 1
 [node name="UI" type="CanvasModulate" parent="Player"]
 z_index = 1
 
-[node name="InventoryContainer" parent="Player/UI" instance=ExtResource( 5 )]
+[node name="Inventory" parent="Player/UI" instance=ExtResource( 5 )]
 
 [node name="CraftingContainer" parent="Player/UI" instance=ExtResource( 6 )]
 anchor_left = 0.5

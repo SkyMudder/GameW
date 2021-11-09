@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 
-onready var inventoryUI: CenterContainer = get_node("UI/InventoryContainer")
+onready var inventoryUI: CenterContainer = get_node("UI/Inventory")
 onready var inventory: Reference = inventoryUI.get_node("SlotContainer").inventory
 onready var craftingUI: HBoxContainer = get_node("UI/CraftingContainer")
 var velocity : = Vector2.ZERO
@@ -12,6 +12,7 @@ const FRICTION : int = 500
 
 func _ready() -> void:
 	inventoryUI.visible = false
+	craftingUI.visible = false
 
 func _physics_process(delta):
 	var input_vector = Vector2.ZERO

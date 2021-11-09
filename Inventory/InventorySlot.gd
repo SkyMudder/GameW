@@ -9,7 +9,10 @@ func setItem(newItem: Item) -> void:
 	if newItem != null:
 		item = newItem
 		$Item.texture = newItem.texture
-		$Item/Amount.text = str(newItem.amount)
+		if newItem.amount != 1:
+			$Item/Amount.text = str(newItem.amount)
+		else:
+			$Item/Amount.text = ""
 	else:
 		item = null
 		$Item.texture = null

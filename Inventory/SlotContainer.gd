@@ -9,7 +9,7 @@ func _ready() -> void:
 
 func _setUpInventory() -> void:
 	_addSlots(15)
-	_setParameters(5)
+	_setColumns(5)
 
 func _addSlots(amount: int) -> void:
 	inventory = Inventory.new(amount)
@@ -18,7 +18,7 @@ func _addSlots(amount: int) -> void:
 		var slot: Control = Slot.instance()
 		add_child(slot)
 
-func _setParameters(columns: int) -> void:
+func _setColumns(columns: int) -> void:
 	self.columns = columns
 
 func _on_items_changed(indexes) -> void:
