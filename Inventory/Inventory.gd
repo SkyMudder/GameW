@@ -25,3 +25,20 @@ func switchItem(sourceIndex: int, targetIndex: int) -> void:
 	items[sourceIndex] = items[targetIndex]
 	items[targetIndex] = tmp
 	emit_signal("items_changed", [sourceIndex, targetIndex])
+
+func addItem(item: Item) -> bool:
+	for x in range(items.size()):
+		if items[x] == null:
+			setItem(x, item)
+			return true
+		elif items[x].name == item.name and items[x].amount != items[x].amountMax:
+			var rest: int = items[x].amountMax - items[x].amount
+			if item.amount > rest:
+				items[x].amount += rest
+				item.amount -= rest
+				setItem(x, items[x])
+			else:
+				items[x].amount += item.amount
+				setItem(x, items[x])
+				return true
+	return false

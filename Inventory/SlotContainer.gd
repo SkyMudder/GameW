@@ -1,23 +1,11 @@
 extends GridContainer
 
 
-var Slot: PackedScene = preload("res://Inventory/Slot.tscn")
+var Slot: PackedScene = preload("res://Inventory/InventorySlot.tscn")
 var inventory: Inventory
-
-var greenOrb = preload("res://Items/OrbGreen.tres")
-var redOrb = preload("res://Items/OrbRed.tres")
 
 func _ready() -> void:
 	_setUpInventory()
-	inventory.setItem(3, greenOrb.duplicate())
-	inventory.setItem(7, redOrb.duplicate())
-	inventory.setItem(8, redOrb.duplicate())
-	var it = redOrb.duplicate()
-	it.amount = 8
-	inventory.setItem(11, it)
-	var ita = redOrb.duplicate()
-	ita.amount = 8
-	inventory.setItem(2, ita)
 
 func _setUpInventory() -> void:
 	_addSlots(15)

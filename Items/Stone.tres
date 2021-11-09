@@ -1,11 +1,11 @@
 [gd_resource type="Resource" load_steps=3 format=2]
 
 [ext_resource path="res://Items/Item.gd" type="Script" id=1]
-[ext_resource path="res://Items/OrbGreen.png" type="Texture" id=2]
+[ext_resource path="res://Items/Stone.png" type="Texture" id=2]
 
 [resource]
 script = ExtResource( 1 )
-name = "Green Orb"
+name = "Stone"
 texture = ExtResource( 2 )
-amountMax = 10
+amountMax = 50
 amount = 1

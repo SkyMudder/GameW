@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Inventory/SlotContainer.tscn" type="PackedScene" id=1]
+
+[node name="InventoryContainer" type="CenterContainer"]
+grow_horizontal = 2
+grow_vertical = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SlotContainer" parent="." instance=ExtResource( 1 )]
+rect_scale = Vector2( 1, 1 )

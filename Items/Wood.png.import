@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/OrbGreen.png-ecbc0cfa1ca082b0993bf0ce4df94385.stex"
+path="res://.import/Wood.png-c88690420c5aee87329d0fa69d85273b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Items/OrbGreen.png"
-dest_files=[ "res://.import/OrbGreen.png-ecbc0cfa1ca082b0993bf0ce4df94385.stex" ]
+source_file="res://Items/Wood.png"
+dest_files=[ "res://.import/Wood.png-c88690420c5aee87329d0fa69d85273b.stex" ]
 
 [params]
 

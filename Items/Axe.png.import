@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/OrbRed.png-e56244bc0f7a26edc18e4ae19c7cfc90.stex"
+path="res://.import/Axe.png-61e238235fe078982864ee29e4c32424.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Items/OrbRed.png"
-dest_files=[ "res://.import/OrbRed.png-e56244bc0f7a26edc18e4ae19c7cfc90.stex" ]
+source_file="res://Items/Axe.png"
+dest_files=[ "res://.import/Axe.png-61e238235fe078982864ee29e4c32424.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=false

@@ -34,9 +34,9 @@ func get_drag_data(_position: Vector2) -> Dictionary:
 		else:
 			item.amount = 0
 		inventory.setItem(data.index, item)
-	inventory.dragData = data.duplicate()
-	inventory.dragData.item = data.item.duplicate()
-	inventory.dragData.item.amount = data.oAmount
+		inventory.dragData = data.duplicate()
+		inventory.dragData.item = data.item.duplicate()
+		inventory.dragData.item.amount = data.oAmount
 	return data
 
 func can_drop_data(_position, data: Dictionary) -> bool:

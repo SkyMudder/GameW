@@ -1,18 +1,40 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://WorldObjects/Rock.png" type="Texture" id=1]
+[ext_resource path="res://Collisions/HitBox.tscn" type="PackedScene" id=2]
+[ext_resource path="res://WorldObjects/Rock.gd" type="Script" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 8.0
-height = 7.8396
+height = 17.6069
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 20, 20 )
 
 [node name="Rock" type="StaticBody2D"]
+collision_mask = 0
+script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 17.6818, 18.9546 )
+position = Vector2( 20.8298, 24.3337 )
 rotation = 1.5708
 shape = SubResource( 1 )
 
 [node name="Rock" type="Sprite" parent="."]
-position = Vector2( 16, 16 )
+position = Vector2( 20, 20 )
+scale = Vector2( 1.25, 1.25 )
 texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="HitBox" parent="." instance=ExtResource( 2 )]
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+position = Vector2( 20, 20 )
+shape = SubResource( 2 )
+
+[connection signal="mouse_entered" from="HitBox" to="." method="_on_HitBox_mouse_entered"]
+[connection signal="mouse_exited" from="HitBox" to="." method="_on_HitBox_mouse_exited"]
+
+[editable path="HitBox"]

@@ -2,7 +2,6 @@ extends Node
 class_name Chunk
 
 onready var ground = get_parent().get_node("Ground")
-onready var background = get_parent().get_node("Background")
 
 const CHUNK_SIZE: int = 10
 
@@ -31,12 +30,8 @@ func _generateFloor(noise2D: float, position: Vector2) -> void:
 func _generateTile(noise2D: float, position: Vector2) -> void:
 	if noise2D <= 0:
 		ground.set_cellv(position, 1)
-		if noise2D > -0.1:
-			background.set_cellv(position, 1)
 	else:
 		ground.set_cellv(position, 0)
-		if noise2D < 0.1:
-			background.set_cellv(position, 0)
 
 func _generateObjects(noise2D: float, noise2DObj: float, position: Vector2) -> void:
 	if noise2D > 0 and noise2DObj > 0.35:
@@ -46,7 +41,6 @@ func _generateObjects(noise2D: float, noise2DObj: float, position: Vector2) -> v
 
 func _removeTile(position: Vector2) -> void:
 	ground.set_cellv(position, -1)
-	background.set_cellv(position, -1)
 
 func remove(wX: int, wY: int) -> void:
 	for x in range(CHUNK_SIZE):

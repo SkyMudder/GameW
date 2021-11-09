@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Crafting/CraftingSlot.gd" type="Script" id=1]
+[ext_resource path="res://UI/EmptySlot.png" type="Texture" id=2]
+
+[node name="CraftingSlot" type="CenterContainer"]
+margin_right = 32.0
+margin_bottom = 32.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Slot" type="TextureRect" parent="."]
+margin_right = 32.0
+margin_bottom = 32.0
+texture = ExtResource( 2 )
+
+[node name="Item" type="TextureRect" parent="."]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 16.0
+margin_bottom = 16.0
+
+[node name="Button" type="Button" parent="Item"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -16.0
+margin_top = -16.0
+margin_right = 16.0
+margin_bottom = 16.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+shortcut_in_tooltip = false
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Item/Button" to="." method="_on_Button_pressed"]
