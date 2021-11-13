@@ -25,7 +25,7 @@ func _checkGenerateChunk() -> void:
 	for x in range($Player.position.x / 320 - renderDistance, $Player.position.x / 320 + renderDistance):
 		for y in range($Player.position.y / 320 - renderDistance, $Player.position.y / 320 + renderDistance):
 			var key: String = str(x) + " " + str(y)
-			if !isChunkGenerated(key):
+			if !_isChunkGenerated(key):
 				chunks[key] = _generateChunk(x, y)
 			chunks[key].shouldRemove = false
 
@@ -48,7 +48,7 @@ func _generateChunk(x: int, y: int) -> Node2D:
 	chunk.generate(noise, noiseObj, x, y)
 	return chunk
 
-func isChunkGenerated(key: String) -> bool:
+func _isChunkGenerated(key: String) -> bool:
 	for x in chunks.keys():
 		if x == key:
 			return true

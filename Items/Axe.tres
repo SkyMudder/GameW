@@ -1,7 +1,9 @@
-[gd_resource type="Resource" load_steps=3 format=2]
+[gd_resource type="Resource" load_steps=5 format=2]
 
 [ext_resource path="res://Tool.gd" type="Script" id=1]
 [ext_resource path="res://Items/Axe.png" type="Texture" id=2]
+[ext_resource path="res://Items/Stone.tres" type="Resource" id=3]
+[ext_resource path="res://Items/Wood.tres" type="Resource" id=4]
 
 [resource]
 script = ExtResource( 1 )
@@ -11,3 +13,5 @@ amountMax = 1
 amount = 1
 damageType = 0
 damage = 1.1
+resources = [ ExtResource( 4 ), ExtResource( 3 ) ]
+resourceAmounts = [ 3, 2 ]

@@ -2,6 +2,7 @@ class_name Inventory
 
 
 signal items_changed(indexes)
+
 var items: Array = []
 
 var dragData
@@ -11,9 +12,10 @@ func _init(size: int) -> void:
 		items.push_back(null)
 
 func setItem(index: int, item: Item) -> void:
-	items[index] = item
-	if item.amount < 1:
-		removeItem(items.find(item))
+	var tmp: Item = item.duplicate()
+	items[index] = tmp
+	if tmp.amount < 1:
+		removeItem(index)
 	emit_signal("items_changed", [index])
 
 func removeItem(index: int) -> void:

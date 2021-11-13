@@ -7,4 +7,4 @@ func _ready() -> void:
 	level = 0
 	drop = preload("res://Items/Stone.tres").duplicate()
 	amountLow = 3
-	amountHigh = 6
+	amountHigh = 5

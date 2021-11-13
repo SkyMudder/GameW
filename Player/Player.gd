@@ -10,9 +10,6 @@ const MAX_SPEED : int = 100
 const ACCELERATION : int = 500
 const FRICTION : int = 500
 
-func _ready() -> void:
-	inventoryUI.visible = false
-	craftingUI.visible = false
 
 func _physics_process(delta):
 	var input_vector = Vector2.ZERO
