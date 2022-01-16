@@ -22,7 +22,7 @@ func _on_craft_clicked() -> void:
 		var tmpItems: Array = (items[currentIndex].resources).duplicate()
 		for x in items[currentIndex].resources.size():
 			tmpItems[x].amount = items[currentIndex].resourceAmounts[x]
-		if _seekItem(tmpItems, player.inventory, 0):
+		if _seekItem(tmpItems, [player.inventory]):
 			player.inventory.addItem(items[currentIndex].duplicate())
 
 func _on_item_selected(index: int) -> void:
@@ -35,28 +35,27 @@ func _addItems() -> void:
 		craftingGrid.get_child(x).get_node("Item").texture = items[x].texture
 		craftingGrid.get_child(x).connect("item_selected", self, "_on_item_selected")
 
-func _seekItem(seekItems: Array, inventory: Inventory, index: int) -> bool:
-	for x in range(index, inventory.items.size()):
-		if inventory.items[x] != null:
-			if inventory.items[x].name == seekItems[0].name:
-				if inventory.items[x].amount >= seekItems[0].amount:
-					var tmp: int = seekItems[0].amount
-					seekItems.pop_front()
-					if seekItems.size() == 0:
-						inventory.items[x].amount -= tmp
-						inventory.setItem(x, inventory.items[x])
-						return true
-					elif _seekItem(seekItems, inventory, 0):
-						inventory.items[x].amount -= tmp
-						inventory.setItem(x, inventory.items[x])
-						return true
-					else:
-						return false
-				else:
-					seekItems[0].amount -= inventory.items[x].amount
-					if _seekItem(seekItems, inventory, x + 1):
-						inventory.removeItem(x)
-						return true
-					else:
-						return false
-	return false
+func _seekItem(seekItems: Array, inventories: Array) -> bool:
+	var queue: Array = []
+	for item in seekItems:
+		for x in range(inventories.size()):
+			for y in range(inventories[x].items.size()):
+				if inventories[x].items[y] != null:
+					if item.name == inventories[x].items[y].name:
+						if inventories[x].items[y].amount >= item.amount:
+							queue.append(_queueItemSet(inventories[x], inventories[x].items[y], y, inventories[x].items[y].amount - item.amount))
+							item.amount = 0
+						else:
+							queue.append(_queueItemSet(inventories[x], inventories[x].items[y], y, 0))
+							item.amount -= inventories[x].items[y].amount
+	for x in seekItems:
+		if x.amount != 0:
+			return false
+	for x in queue:
+		x.resume()
+	return true
+
+func _queueItemSet(inventory: Inventory, item: Item, index: int, amount: int) -> void:
+	yield()
+	item.amount = amount
+	inventory.setItem(index, item)

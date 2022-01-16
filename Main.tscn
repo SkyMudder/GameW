@@ -84,5 +84,5 @@ margin_top = -100.0
 margin_right = 142.0
 margin_bottom = 100.0
 
-[node name="InventoryContainer" parent="Player/UI" instance=ExtResource( 5 )]
+[node name="Toolbar" parent="Player/UI" instance=ExtResource( 5 )]
 visible = false
