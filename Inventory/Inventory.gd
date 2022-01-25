@@ -8,6 +8,7 @@ var items: Array = []
 func _init(size: int) -> void:
 	for _x in size:
 		items.push_back(null)
+	Data.playerInventories.push_back(self)
 
 func setItem(index: int, item: Item) -> void:
 	var tmp: Item = item.duplicate()
@@ -19,30 +20,60 @@ func setItem(index: int, item: Item) -> void:
 func removeItem(index: int) -> void:
 	items[index] = null
 	emit_signal("items_changed", [index], [self])
+	
+func addItem(item: Item) -> bool:
+	#Checks if there are available Slots with the same Item deeper in the Inventories
+	for x in Data.playerInventories:
+		for y in range(x.items.size()):
+			if x.items[y] != null:
+				if x.items[y].name == item.name:
+					var amount: int = _addToSlot(x, item, y)
+					if amount == -1:
+						return true
+					else:
+						item.amount = amount
+	#Fills the Inventories from the start
+	for x in Data.playerInventories:
+		for y in range(x.items.size()):
+			var amount: int = item.amount
+			if x.items[y] == null:
+				amount = _addToSlotEmpty(x, item, y)
+			elif x.items[y].name == item.name:
+				amount = _addToSlot(x, item, y)
 
+			if amount == -1:
+				return true
+			else:
+				item.amount = amount
+	return false
+
+func _addToSlotEmpty(inventory: Inventory, item: Item, itemIndex: int) -> int:
+	if item.amount > item.amountMax:
+		var tmp: Item = item.duplicate()
+		tmp.amount = item.amountMax
+		item.amount -= item.amountMax
+		inventory.setItem(itemIndex, tmp)
+		return item.amount
+	else:
+		inventory.setItem(itemIndex, item)
+		return -1
+
+func _addToSlot(inventory: Inventory, item: Item, itemIndex: int) -> int:
+	var rest: int = inventory.items[itemIndex].amountMax - inventory.items[itemIndex].amount
+	if item.amount > rest:
+		inventory.items[itemIndex].amount += rest
+		item.amount -= rest
+		inventory.setItem(itemIndex, inventory.items[itemIndex])
+		return item.amount
+	else:
+		inventory.items[itemIndex].amount += item.amount
+		inventory.setItem(itemIndex, inventory.items[itemIndex])
+		return -1
+
+#----------------------------------DEPRECATED--------------------------------------------#
 func switchItem(sourceInventory: Inventory, sourceIndex: int, targetIndex: int) -> void:
-	##!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!##
-	var tmp: Item = sourceInventory.items[sourceIndex] #TRY to remove .duplicate()
-	print(tmp)
-	##!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!##
+	var tmp: Item = sourceInventory.items[sourceIndex]
 	sourceInventory.items[sourceIndex] = items[targetIndex]
 	items[targetIndex] = tmp
-	print(items[targetIndex])
 	emit_signal("items_changed", [sourceIndex, targetIndex], [sourceInventory, self])
-
-func addItem(item: Item) -> bool:
-	for x in range(items.size()):
-		if items[x] == null:
-			setItem(x, item)
-			return true
-		elif items[x].name == item.name and items[x].amount != items[x].amountMax:
-			var rest: int = items[x].amountMax - items[x].amount
-			if item.amount > rest:
-				items[x].amount += rest
-				item.amount -= rest
-				setItem(x, items[x])
-			else:
-				items[x].amount += item.amount
-				setItem(x, items[x])
-				return true
-	return false
+#----------------------------------DEPRECATED--------------------------------------------#

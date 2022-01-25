@@ -26,12 +26,6 @@ func _physics_process(delta):
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("inventory"):
-		if inventoryUI.visible:
-			inventoryUI.visible = false
-		else:
-			inventoryUI.visible = true
+		inventoryUI.visible = !inventoryUI.visible
 	if event.is_action_pressed("crafting"):
-		if craftingUI.visible:
-			craftingUI.visible = false
-		else:
-			craftingUI.visible = true
+		craftingUI.visible = !craftingUI.visible

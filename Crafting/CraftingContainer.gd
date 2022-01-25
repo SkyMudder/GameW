@@ -22,7 +22,7 @@ func _on_craft_clicked() -> void:
 		var tmpItems: Array = (items[currentIndex].resources).duplicate()
 		for x in items[currentIndex].resources.size():
 			tmpItems[x].amount = items[currentIndex].resourceAmounts[x]
-		if _seekItem(tmpItems, [player.inventory]):
+		if _seekItem(tmpItems, Data.playerInventories):
 			player.inventory.addItem(items[currentIndex].duplicate())
 
 func _on_item_selected(index: int) -> void:

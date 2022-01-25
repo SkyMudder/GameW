@@ -7,5 +7,5 @@
 script = ExtResource( 1 )
 name = "Wood"
 texture = ExtResource( 2 )
-amountMax = 50
+amountMax = 3
 amount = 1

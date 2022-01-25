@@ -2,6 +2,8 @@ extends Node
 
 
 var items: Array = []
+var allInventories: Array = []
+var playerInventories: Array = []
 
 func _ready() -> void:
 	getAllItems()

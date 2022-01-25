@@ -7,7 +7,6 @@ var item: Item
 func setItem(newItem: Item) -> void:
 	if newItem != null:
 		item = newItem
-		print(str(inventory) + newItem.name)
 		$Item.texture = newItem.texture
 		if newItem.amount != 1:
 			$Item/Amount.text = str(newItem.amount)
