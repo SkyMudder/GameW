@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://WorldGen/TileMaps/DirtTileMap.png" type="Texture" id=4]
 [ext_resource path="res://Inventory/InventoryContainter.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Crafting/CraftingContainer.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Inventory/Toolbar.gd" type="Script" id=7]
 
 [sub_resource type="TileSet" id=1]
 0/name = "GrassTileMap.png 0"
@@ -85,4 +86,12 @@ margin_right = 142.0
 margin_bottom = 100.0
 
 [node name="Toolbar" parent="Player/UI" instance=ExtResource( 5 )]
-visible = false
+margin_top = 200.0
+margin_bottom = 250.0
+
+[node name="SlotContainer" parent="Player/UI/Toolbar" index="0"]
+margin_top = 25.0
+margin_bottom = 25.0
+script = ExtResource( 7 )
+
+[editable path="Player/UI/Toolbar"]

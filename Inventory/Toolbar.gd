@@ -8,8 +8,8 @@ func _ready() -> void:
 	_setUpInventory()
 
 func _setUpInventory() -> void:
-	_addSlots(15)
-	_setColumns(5)
+	_addSlots(9)
+	_setColumns(9)
 
 func _addSlots(amount: int) -> void:
 	inventory = Inventory.new(amount)
@@ -25,9 +25,3 @@ func _on_items_changed(indexes, inventories) -> void:
 	for x in inventories.size():
 		if inventories[x] == inventory:
 			get_child(indexes[x]).setItem(inventory.items[indexes[x]])
-
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_released("mouse_left"):
-		if Gv.dragData is Dictionary:
-			Gv.dragData.item.amount = Gv.dragData.oAmount
-			Gv.dragData.inventory.setItem(Gv.dragData.index, Gv.dragData.item)

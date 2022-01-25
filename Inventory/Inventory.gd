@@ -1,11 +1,9 @@
 class_name Inventory
 
 
-signal items_changed(indexes)
+signal items_changed(indexes, inventories)
 
 var items: Array = []
-
-var dragData
 
 func _init(size: int) -> void:
 	for _x in size:
@@ -16,17 +14,21 @@ func setItem(index: int, item: Item) -> void:
 	items[index] = tmp
 	if tmp.amount < 1:
 		removeItem(index)
-	emit_signal("items_changed", [index])
+	emit_signal("items_changed", [index], [self])
 
 func removeItem(index: int) -> void:
 	items[index] = null
-	emit_signal("items_changed", [index])
+	emit_signal("items_changed", [index], [self])
 
-func switchItem(sourceIndex: int, targetIndex: int) -> void:
-	var tmp: Item = items[sourceIndex]
-	items[sourceIndex] = items[targetIndex]
+func switchItem(sourceInventory: Inventory, sourceIndex: int, targetIndex: int) -> void:
+	##!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!##
+	var tmp: Item = sourceInventory.items[sourceIndex] #TRY to remove .duplicate()
+	print(tmp)
+	##!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!##
+	sourceInventory.items[sourceIndex] = items[targetIndex]
 	items[targetIndex] = tmp
-	emit_signal("items_changed", [sourceIndex, targetIndex])
+	print(items[targetIndex])
+	emit_signal("items_changed", [sourceIndex, targetIndex], [sourceInventory, self])
 
 func addItem(item: Item) -> bool:
 	for x in range(items.size()):

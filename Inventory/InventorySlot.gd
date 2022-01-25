@@ -4,10 +4,10 @@ extends CenterContainer
 onready var inventory: Inventory = get_parent().inventory
 var item: Item
 
-
 func setItem(newItem: Item) -> void:
 	if newItem != null:
 		item = newItem
+		print(str(inventory) + newItem.name)
 		$Item.texture = newItem.texture
 		if newItem.amount != 1:
 			$Item/Amount.text = str(newItem.amount)
@@ -22,6 +22,7 @@ func get_drag_data(_position: Vector2) -> Dictionary:
 	var data: Dictionary = {}
 	var dragPreview: TextureRect
 	if item != null:
+		data.inventory = inventory
 		data.item = item.duplicate()
 		data.oAmount = item.amount
 		data.index = get_index()
@@ -37,32 +38,29 @@ func get_drag_data(_position: Vector2) -> Dictionary:
 		else:
 			item.amount = 0
 		inventory.setItem(data.index, item)
-		inventory.dragData = data.duplicate()
-		inventory.dragData.item = data.item.duplicate()
-		inventory.dragData.item.amount = data.oAmount
+		Gv.dragData = data
 	return data
 
 func can_drop_data(_position, data: Dictionary) -> bool:
 	return data is Dictionary and data.has("item")
 
-func drop_data(_position: Vector2, data) -> void:
+func drop_data(_position: Vector2, data: Dictionary) -> void:
 	var thisIndex: int = get_index()
 	var thisItem: Item = item
 	if thisItem != null:
 		if thisItem.name != data.item.name:
 			data.item.amount = data.oAmount
-			inventory.setItem(data.index, data.item)
-			inventory.switchItem(data.index, thisIndex)
+			inventory.setItem(thisIndex, data.item)
+			data.inventory.setItem(data.index, thisItem)
 		elif thisItem.name == data.item.name:
 			if thisItem.amount + data.item.amount > thisItem.amountMax:
 				var rest: int = thisItem.amountMax - thisItem.amount
 				thisItem.amount += rest
 				data.item.amount = data.oAmount - rest
-				inventory.setItem(data.index, data.item)
+				data.inventory.setItem(data.index, data.item)
 			else:
 				thisItem.amount += data.item.amount
 			inventory.setItem(thisIndex, thisItem)
 	else:
-		print(data.item.amount)
 		inventory.setItem(thisIndex, data.item)
-	inventory.dragData = null
+	Gv.dragData = null
