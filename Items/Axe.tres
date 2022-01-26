@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=5 format=2]
 
-[ext_resource path="res://Tool.gd" type="Script" id=1]
+[ext_resource path="res://Items/Tool.gd" type="Script" id=1]
 [ext_resource path="res://Items/Axe.png" type="Texture" id=2]
 [ext_resource path="res://Items/Stone.tres" type="Resource" id=3]
 [ext_resource path="res://Items/Wood.tres" type="Resource" id=4]
@@ -12,6 +12,7 @@ texture = ExtResource( 2 )
 amountMax = 1
 amount = 1
 damageType = 0
+level = 0
 damage = 1.1
 resources = [ ExtResource( 4 ), ExtResource( 3 ) ]
 resourceAmounts = [ 3, 2 ]

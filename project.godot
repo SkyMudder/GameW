@@ -27,7 +27,7 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "Tool",
 "language": "GDScript",
-"path": "res://Tool.gd"
+"path": "res://Items/Tool.gd"
 } ]
 _global_script_class_icons={
 "Chunk": "",
