@@ -32,6 +32,7 @@ func addItem(item: Item) -> bool:
 						return true
 					else:
 						item.amount = amount
+	
 	#Fills the Inventories from the start
 	for x in Data.playerInventories:
 		for y in range(x.items.size()):
@@ -40,7 +41,7 @@ func addItem(item: Item) -> bool:
 				amount = _addToSlotEmpty(x, item, y)
 			elif x.items[y].name == item.name:
 				amount = _addToSlot(x, item, y)
-
+			
 			if amount == -1:
 				return true
 			else:
