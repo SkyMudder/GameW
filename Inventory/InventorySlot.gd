@@ -38,6 +38,7 @@ func get_drag_data(_position: Vector2) -> Dictionary:
 			item.amount = 0
 		inventory.setItem(data.index, item)
 		Gv.dragData = data
+	
 	return data
 
 func can_drop_data(_position, data: Dictionary) -> bool:
@@ -63,3 +64,9 @@ func drop_data(_position: Vector2, data: Dictionary) -> void:
 	else:
 		inventory.setItem(thisIndex, data.item)
 	Gv.dragData = null
+
+func setHighlight(highlight: bool) -> void:
+	if highlight:
+		$Slot.modulate = Color("9f9f9f")
+	else:
+		$Slot.modulate = Color("ffffff")

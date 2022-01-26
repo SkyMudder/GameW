@@ -21,7 +21,6 @@ func _process(delta: float) -> void:
 
 func _destroy() -> void:
 	drop.amount = rand.randi_range(amountLow, amountHigh)
-	print(drop.amount)
 	player.inventory.addItem(drop)
 	queue_free()
 

@@ -8,7 +8,7 @@ var items: Array = []
 func _init(size: int) -> void:
 	for _x in size:
 		items.push_back(null)
-	Data.playerInventories.push_back(self)
+	Data.playerInventories.push_front(self)
 
 func setItem(index: int, item: Item) -> void:
 	var tmp: Item = item.duplicate()

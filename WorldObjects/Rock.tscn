@@ -5,8 +5,8 @@
 [ext_resource path="res://WorldObjects/Rock.gd" type="Script" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 8.0
-height = 17.6069
+radius = 5.66627
+height = 15.0079
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 20, 20 )
@@ -22,11 +22,7 @@ shape = SubResource( 1 )
 
 [node name="Rock" type="Sprite" parent="."]
 position = Vector2( 20, 20 )
-scale = Vector2( 1.25, 1.25 )
 texture = ExtResource( 1 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="HitBox" parent="." instance=ExtResource( 2 )]
 
